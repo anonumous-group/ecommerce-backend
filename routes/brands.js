@@ -16,7 +16,7 @@ brands.get('/', async (req, res) => {
 // Create brand (admin only)
 brands.post('/', auth, async (req, res) => {
   try {
-    if (req.user.role !== 'admin') return res.status(403).json({ error: 'Not admin' });
+    if (req.user.role !== 'admin') return res.status(403).json({ error: 'Unauthorized' });
     const brand = new Brand(req.body);
     await brand.save();
     res.status(201).json(brand);
