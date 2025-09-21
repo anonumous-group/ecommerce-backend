@@ -25,7 +25,7 @@ brands.post('/', auth, async (req, res) => {
   }
 });
 
-// Update category (admin only)
+// Update brand (admin only)
 brands.put('/:id', auth, async (req, res) => {
   try {
     if (req.user.role !== 'admin') return res.status(403).json({ error: 'Unauthorized' });
@@ -37,7 +37,7 @@ brands.put('/:id', auth, async (req, res) => {
   }
 });
 
-// Delete category (admin only)
+// Delete brand (admin only)
 brands.delete('/:id', auth, async (req, res) => {
   try {
     if (req.user.role !== 'admin') return res.status(403).json({ error: 'Unauthorized' });

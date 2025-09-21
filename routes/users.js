@@ -31,7 +31,7 @@ users.post(
             user = new User({ name, email, password });
             await user.save();
 
-            const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '7d' });
             res.status(201).json({ token, user: { id: user._id, name, email, role: user.role, createdAt: user.createdAt } });
         } catch (error) {
             res.status(500).json({ error: 'Server error' });
@@ -48,7 +48,7 @@ users.post('/login', loginLimiter, async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
 
-        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.status(201).json({ token, user: { id: user._id, name: user.name, email, role: user.role, createdAt: user.createdAt } });
     } catch (error) {
         res.status(500).json({ error: 'Server error' });
