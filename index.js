@@ -13,6 +13,7 @@ import categories from './routes/categories.js';
 import carts from './routes/carts.js';
 import reviews from './routes/reviews.js';
 import addresses from './routes/addresses.js';
+import brands from './routes/brands.js';
 
 // Apply rate limiting to all requests
 const limiter = rateLimit({
@@ -44,6 +45,7 @@ app.use('/api/categories', categories);
 app.use('/api/cart', carts);
 app.use('/api/address', addresses);
 app.use('/api/reviews', reviews);
+app.use('/api/brands', brands);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
