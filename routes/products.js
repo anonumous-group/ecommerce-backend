@@ -31,7 +31,7 @@ products.post('/upload', auth, upload.single('image'), async (req, res) => {
 // get all products;
 products.get('/', async (req, res) => {
     try {
-        const { page = 1, limit = 10 } = req.query;
+        const { page = 1, limit = 25 } = req.query;
         const products = await Product.find()
             .populate('category')
             .skip((page - 1) * limit)
