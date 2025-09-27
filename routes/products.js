@@ -34,6 +34,7 @@ products.get('/', async (req, res) => {
         const { page = 1, limit = 25 } = req.query;
         const products = await Product.find()
             .populate('category')
+            .populate('brands')
             .skip((page - 1) * limit)
             .limit(Number(limit));
         res.json(products);
